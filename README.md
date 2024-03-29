@@ -52,3 +52,7 @@ In short, Increase flexibility where I manually keep it safe.
 # free
 
 sometimes just call free(), sometimes need to define a payload_free_function.
+
+# idea of manage ownership explicitly
+
+give by passing in as args, or get by return value as args.
