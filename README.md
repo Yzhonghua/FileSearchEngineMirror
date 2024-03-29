@@ -66,3 +66,11 @@ op = somefn;
 # idea of manage ownership explicitly
 
 give by passing in as args, or get by return value as args.
+
+# linkedList_priv.h & linkedList.h
+
+use private header file
+
+- some node struct definition can be import to many .c files.
+- keep hiding from the use as put them in .c
+- reduce unnecessary re-compile rather than put then in .h
