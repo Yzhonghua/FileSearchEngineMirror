@@ -74,3 +74,5 @@ use private header file
 - some node struct definition can be import to many .c files.
 - keep hiding from the use as put them in .c
 - reduce unnecessary re-compile rather than put then in .h
+
+an example: unittest can peek into the header_priv.h, inside the implementation to verify correctness.
