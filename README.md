@@ -53,6 +53,16 @@ In short, Increase flexibility where I manually keep it safe.
 
 sometimes just call free(), sometimes need to define a payload_free_function.
 
+First we have:
+```
+typedef void(*LLPayloadFreeFnPtr)(LLPayload_t payload);
+LLPayloadFreeFnPtr op = somefn;
+
+// rather than do this every time:
+void (*op)(LLPayload_t payload);
+op = somefn;
+```
+
 # idea of manage ownership explicitly
 
 give by passing in as args, or get by return value as args.
