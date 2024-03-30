@@ -46,6 +46,34 @@ It does have some pros:
 
 - we know c doesn't have overload. So some POSIX function like fwrite() will take a void* to handle different calls.
 
+- allow storing value / address
+```
+// store address
+typedef struct {
+  int num;
+} ExamplePayload;
+
+payload = (ExamplePayload *) malloc(sizeof(ExamplePayload));
+payload->num = 10;
+LinkedList_Push(list, (LLPayload_t)payload);
+
+// store address
+int32_t *num = new int32_t(10);
+LinkedList_Push(list, (LLPayload_t)num);
+
+// store value
+int32_t num = 10;
+Linkedlist_Push(list, (LLPayload_t)(int64_t)num);
+
+// store value
+int num = 10;
+LinkedList_Push(list, (LLPayload_t)(uintptr_t)num);
+```
+several tips:
+
+1) we dont need (int64_t*) fro the second one, because the pointer size is always 64/32, same with void* and depends on the paltform you're in.
+2) for the third one, use uintptr_t to safely transform.
+
 In short, Increase flexibility where I manually keep it safe.
 
 
