@@ -91,6 +91,12 @@ void (*op)(LLPayload_t payload);
 op = somefn;
 ```
 
+free -> free thing we get from malloc
+
+free_fn -> complex struct which have pointer inside
+
+noNp_free -> example : hashmap resize. free the struct while keeping the elements.
+
 # idea of manage ownership explicitly
 
 give by passing in as args, or get by return value as args.
