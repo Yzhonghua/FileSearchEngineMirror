@@ -91,7 +91,7 @@ void (*op)(LLPayload_t payload);
 op = somefn;
 ```
 
-free -> free thing we get from malloc
+free -> free thing we get from malloc, including regular struct.
 
 free_fn -> complex struct which have pointer inside
 
