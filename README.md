@@ -110,3 +110,50 @@ use private header file
 - reduce unnecessary re-compile rather than put then in .h
 
 an example: unittest can peek into the header_priv.h, inside the implementation to verify correctness.
+
+# System calls
+```
+static void HandleDir(char* dir_path, DIR* d, DocTable** doc_table, MemIndex** index) {
+  struct dirent* dirent;
+  struct stat st;
+
+  // 第一阶段：收集目录中所有条目的信息
+  while ((dirent = readdir(d)) != NULL) {  // 使用 readdir 读取目录条目
+    if (strcmp(dirent->d_name, ".") == 0 || strcmp(dirent->d_name, "..") == 0) {
+      continue;  // 忽略 "." 和 ".." 目录
+    }
+
+    // 构造完整路径名以用于 stat 调用
+    char* full_path;  // 分配内存并构造 full_path
+
+    if (stat(full_path, &st) == 0) {  // 使用 stat 获取条目信息
+      if (S_ISREG(st.st_mode)) {
+        // 处理普通文件
+      } else if (S_ISDIR(st.st_mode)) {
+        // 处理子目录
+      } else {
+        // 忽略非文件非目录的条目
+      }
+    }
+    free(full_path);  // 释放 full_path 分配的内存
+  }
+
+  // 第二阶段：按字母顺序处理已排序的目录元数据
+  // 排序目录条目（这需要一个结构来存储条目的详细信息）
+
+  for (int i = 0; i < num_entries; i++) {  // 处理每个条目
+    if (!entries[i].is_dir) {
+      // 处理文件
+    } else {
+      DIR* sub_dir = opendir(entries[i].path_name);  // 使用 opendir 打开子目录
+      if (sub_dir != NULL) {
+        HandleDir(entries[i].path_name, sub_dir, doc_table, index);  // 递归调用处理子目录
+        closedir(sub_dir);  // 使用 closedir 关闭子目录
+      }
+    }
+    // 清理，例如释放分配的内存
+  }
+  // 清理，在此处释放分配的资源
+}
+```
+
