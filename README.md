@@ -95,7 +95,9 @@ free -> free thing we get from malloc, including regular struct.
 
 free_fn -> complex struct which have pointer inside
 
-noNp_free -> example : hashmap resize. free the struct while keeping the elements.
+noNp_free -> example1 : hashmap resize. free the struct while keeping the elements.
+
+example2 : free hashtable, we first use kv_free_fn to free every kv_value of a list, and use LinkedList_Free(list, LLNoOpFree); to free the list.
 
 # idea of manage ownership explicitly
 
