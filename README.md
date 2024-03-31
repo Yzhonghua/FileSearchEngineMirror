@@ -159,3 +159,11 @@ static void HandleDir(char* dir_path, DIR* d, DocTable** doc_table, MemIndex** i
 }
 ```
 
+
+# inheritance and offset
+
+function pointer -> dynamiv biding
+
+hashtable reader and driver class -> inheritance (keep lookupBucket, add lookupDocid...)
+
+fseek+fwrite the element, and fseek to header to store the size -> offset.
