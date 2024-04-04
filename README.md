@@ -171,7 +171,7 @@ fseek+fwrite the element, and fseek to header to store the size -> offset.
 # hw4
 - 为什么集成ServerSocket类？
 
-  保存listen_sock_fd, port, ai_family，并且集成Accpect，在其中调用accpet()，两层while可以实现一直监听并在接收到时分配给一个线程处理。
+  保存listen_sock_fd, port, ai_family，并且集成Accpect，在其中调用accpet()，成功后先进行初步处理获得两端的一些信息，再把这个整体交给线程处理，从而对外层隐藏了一些处理细节。相当于把Accept看作一个黑盒，要么成功要么失败。后面如果有新的处理只需要改变内层Socket代码。
 
 - <img width="765" alt="image" src="https://github.com/Yzhonghua/FileSearchEngineMirror/assets/59692712/7fba5069-983f-4848-9f00-99ce94854af1">
 
