@@ -192,3 +192,7 @@ setsockopt(_listen_fd, SOL_SOCKET, SO_REUSEADDR,
 - Server分别处理file req和url req并且将报文头部和一些html以字符串的形式写入clien_fd，此时你有两种情况：
   1）浏览器解析response头部，并把后续数据渲染成实际的html页面
   2）基于终端的nc，将以字符串的形式打印头部和html源代码
+
+- 使用浏览器提交搜索请求时分两种：
+  1）直接输出网址，相比terminal中你不需要添加报文头、协议了
+  2）使用搜索栏，which is a form with action=query，它会自动向/query路径发送GET请求，在后续代码中boost::split转化成vector，并调用QueryProcessor生成vector<result>并处理显示
