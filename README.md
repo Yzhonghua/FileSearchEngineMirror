@@ -182,3 +182,7 @@ int optval = 1;
 setsockopt(_listen_fd, SOL_SOCKET, SO_REUSEADDR,
            &optval, sizeof(optval));
 ```
+
+- HttpConnection: getNextRequest, parseRequest, WriteResponse
+
+- HttpServer: listen_sock_fd + ServerTask, 调用hc, processRequest (file / url), 调用hc
