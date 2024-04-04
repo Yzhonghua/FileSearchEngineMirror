@@ -186,3 +186,5 @@ setsockopt(_listen_fd, SOL_SOCKET, SO_REUSEADDR,
 - HttpConnection: getNextRequest, parseRequest, WriteResponse
 
 - HttpServer: listen_sock_fd + ServerTask, 调用hc, processRequest (file / url), 调用hc
+
+- 一些与http层面无关的小工具集成在HttpUtils中，比如wrappedRead, wrappedWrite, urlParser, fileReader以及检查安全性的两个方法。
