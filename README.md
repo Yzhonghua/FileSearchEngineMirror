@@ -188,3 +188,7 @@ setsockopt(_listen_fd, SOL_SOCKET, SO_REUSEADDR,
 - HttpServer: listen_sock_fd + ServerTask, 调用hc, processRequest (file / url), 调用hc
 
 - 一些与http层面无关的小工具集成在HttpUtils中，比如wrappedRead, wrappedWrite, urlParser, fileReader以及检查安全性的两个方法。
+
+- Server分别处理file req和url req并且将报文头部和一些html以字符串的形式写入clien_fd，此时你有两种情况：
+  1）浏览器解析response头部，并把后续数据渲染成实际的html页面
+  2）基于终端的nc，将以字符串的形式打印头部和html源代码
