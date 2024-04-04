@@ -167,3 +167,10 @@ function pointer -> dynamiv biding
 hashtable reader and driver class -> inheritance (keep lookupBucket, add lookupDocid...)
 
 fseek+fwrite the element, and fseek to header to store the size -> offset.
+
+# hw4
+- 为什么集成ServerSocket类？
+
+  保存listen_sock_fd, port, ai_family，并且集成Accpect，在其中调用accpet()，两层while可以实现一直监听并在接收到时分配给一个线程处理。
+
+- <img width="765" alt="image" src="https://github.com/Yzhonghua/FileSearchEngineMirror/assets/59692712/7fba5069-983f-4848-9f00-99ce94854af1">
