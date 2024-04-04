@@ -174,3 +174,11 @@ fseek+fwrite the element, and fseek to header to store the size -> offset.
   保存listen_sock_fd, port, ai_family，并且集成Accpect，在其中调用accpet()，两层while可以实现一直监听并在接收到时分配给一个线程处理。
 
 - <img width="765" alt="image" src="https://github.com/Yzhonghua/FileSearchEngineMirror/assets/59692712/7fba5069-983f-4848-9f00-99ce94854af1">
+
+- 一个ip:port仅能对应一个listen_sock_fd，有类似表的结构进行管理。当然也可以设置快速回收避免time_wait（并不意味着同一时间有两个socket，只是可以绑定两个）：
+```
+// allow recycle immediately
+int optval = 1;
+setsockopt(_listen_fd, SOL_SOCKET, SO_REUSEADDR,
+           &optval, sizeof(optval));
+```
