@@ -196,3 +196,7 @@ setsockopt(_listen_fd, SOL_SOCKET, SO_REUSEADDR,
 - 使用浏览器提交搜索请求时分两种：
   1）直接输出网址，相比terminal中你不需要添加报文头、协议了
   2）使用搜索栏，which is a form with action=query，它会自动向/query路径发送GET请求，在后续代码中boost::split转化成vector，并调用QueryProcessor生成vector<result>并处理显示
+
+# multi threads
+
+- 让当前线程thread_array_[i]可以访问terminate flag让他知道现在需要销毁线程池了，它就可以在ThreadLoop中return，并修改num_threads_running，等它结束后会释放锁，循环体再把锁拿回来以等待对下一个线程执行相同的操作
